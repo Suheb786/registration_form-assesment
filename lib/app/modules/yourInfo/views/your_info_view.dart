@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:registration_form/app/components/custom_appbar.dart';
+import 'package:registration_form/app/widgets/customButton.dart';
 import 'package:registration_form/app/widgets/custom_dropdown_textField.dart';
 import 'package:registration_form/app/widgets/custom_text_form_fileld.dart';
 
@@ -16,12 +17,16 @@ class YourInfoView extends GetView<YourInfoController> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Educational Info",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                "Educational Info",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
             ),
             Obx(() => CustomDropdownTextFormField(
@@ -62,6 +67,70 @@ class YourInfoView extends GetView<YourInfoController> {
               child: Divider(
                 color: Colors.black12,
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                "Professional Info",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            CustomTextformField(
+              labelText: "Experience*",
+              hintText: "Enter Year of Experience",
+            ),
+            Obx(() => CustomDropdownTextFormField(
+                  hintText: "Select Designation",
+                  titleText: "Designatoin*",
+                  dropDownListOfItems: controller.designationlist,
+                  onChanged: (selectedDesignation) {
+                    controller.intialSelectedDesignation.value =
+                        selectedDesignation ?? "";
+                  },
+                  isEmpty: controller.intialSelectedDesignation.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.intialSelectedDesignation.value.isEmpty
+                      ? null
+                      : controller.intialSelectedDesignation.value,
+                )),
+            Obx(() => CustomDropdownTextFormField(
+                  hintText: "Select Your Domain",
+                  titleText: "Domain*",
+                  dropDownListOfItems: controller.domainList,
+                  onChanged: (selectedDomain) {
+                    controller.intialSelectedDomain.value =
+                        selectedDomain ?? "";
+                  },
+                  isEmpty: controller.intialSelectedDomain.value.isEmpty
+                      ? true
+                      : false,
+                  value: controller.intialSelectedDomain.value.isEmpty
+                      ? null
+                      : controller.intialSelectedDomain.value,
+                )),
+            Row(
+              children: [
+                Expanded(
+                    child: CustomButton(
+                  navigation: (() => Get.toNamed('/form')),
+                  text: "Previous",
+                  textColor: Color(0xff000075),
+                  backgroundColor: Colors.white,
+                  border: Border.all(color: Color(0xff000075)),
+                )),
+                Expanded(
+                    child: CustomButton(
+                  navigation: (() => Get.toNamed('/your-address')),
+                  text: "Next",
+                  textColor: Colors.white,
+                  backgroundColor: Color(0xff000075),
+                  border: Border.all(color: Color(0xff000075)),
+                ))
+              ],
             )
           ],
         ),

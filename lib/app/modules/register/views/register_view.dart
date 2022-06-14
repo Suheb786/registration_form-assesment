@@ -22,119 +22,153 @@ class Register extends GetView<RegisterController> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () => controller.picImage(context),
-                    child: GetBuilder<RegisterController>(
-                      builder: (controller) {
-                        if (controller.pickedImage == null) {
-                          return EmptyImageAvatar();
-                        } else {
-                          return FilledImageAvatar(
-                            image: controller.pickedImage!,
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                  CustomTextformField(
-                    controller: controller.firstNameController,
-                    labelText: "First Name*",
-                    hintText: "Enter your first name here",
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Color(0xff000075),
-                    ),
-                  ),
-                  CustomTextformField(
-                    labelText: "Last Name*",
-                    hintText: "Enter your last name here",
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Color(0xff000075),
-                    ),
-                  ),
-                  CustomTextformField(
-                    keyboardType: TextInputType.number,
-                    labelText: "Phone Number*",
-                    hintText: "Enter your 10 digit phone number",
-                    prefixIcon: Icon(
-                      Icons.phone,
-                      color: Color(0xff000075),
-                    ),
-                  ),
-                  CustomTextformField(
-                    labelText: "Email*",
-                    hintText: "Your email goes here",
-                    prefixIcon: Icon(
-                      Icons.email_rounded,
-                      color: Color(0xff000075),
-                    ),
-                  ),
-                  Obx(
-                    () => Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Gender",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              CustomRadioButton(
-                                title: "Male",
-                                groupValue: controller.genderType.value,
-                                value: Gender.Male,
-                                onChanged: (val) {
-                                  controller.genderCheck();
-                                  controller.genderType.value = val as Gender;
-                                },
-                              ),
-                              CustomRadioButton(
-                                title: "Female",
-                                groupValue: controller.genderType.value,
-                                value: Gender.Female,
-                                onChanged: (val) {
-                                  controller.genderType.value = val as Gender;
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
+              child: Form(
+                key: controller.registerFormKey,
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () => controller.picImage(context),
+                      child: GetBuilder<RegisterController>(
+                        builder: (controller) {
+                          if (controller.pickedImage == null) {
+                            return EmptyImageAvatar();
+                          } else {
+                            return FilledImageAvatar(
+                              image: controller.pickedImage!,
+                            );
+                          }
+                        },
                       ),
                     ),
-                  ),
-                  CustomTextformField(
-                    labelText: "Password*",
-                    hintText: "Password",
-                    suffixIcon: InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.visibility_off,
+                    CustomTextformField(
+                      controller: controller.firstNameController,
+                      keyboardType: TextInputType.name,
+                      validator: (fname) => controller.validFirstName(fname),
+                      labelText: "First Name*",
+                      hintText: "Enter your first name here",
+                      prefixIcon: Icon(
+                        Icons.person,
                         color: Color(0xff000075),
                       ),
                     ),
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: Color(0xff000075),
+                    CustomTextformField(
+                      controller: controller.lastNameController,
+                      validator: (lname) => controller.validLastName(lname),
+                      labelText: "Last Name*",
+                      hintText: "Enter your last name here",
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Color(0xff000075),
+                      ),
                     ),
-                  ),
-                  CustomTextformField(
-                    labelText: "Confirm Password*",
-                    hintText: "Password",
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: Color(0xff000075),
+                    CustomTextformField(
+                      controller: controller.phoneNoController,
+                      validator: (phone) => controller.validPhoneNo(phone),
+                      keyboardType: TextInputType.number,
+                      labelText: "Phone Number*",
+                      hintText: "Enter your 10 digit phone number",
+                      prefixIcon: Icon(
+                        Icons.phone,
+                        color: Color(0xff000075),
+                      ),
                     ),
-                  ),
-                  CustomButton()
-                ],
+                    CustomTextformField(
+                      controller: controller.emailController,
+                      validator: (email) => controller.validEmail(email),
+                      labelText: "Email*",
+                      hintText: "Your email goes here",
+                      prefixIcon: Icon(
+                        Icons.email_rounded,
+                        color: Color(0xff000075),
+                      ),
+                    ),
+                    Obx(
+                      () => Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Gender",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                CustomRadioButton(
+                                  title: "Male",
+                                  groupValue: controller.genderType.value,
+                                  value: Gender.Male,
+                                  onChanged: (val) {
+                                    controller.genderCheck();
+                                    controller.genderType.value = val as Gender;
+                                  },
+                                ),
+                                CustomRadioButton(
+                                  title: "Female",
+                                  groupValue: controller.genderType.value,
+                                  value: Gender.Female,
+                                  onChanged: (val) {
+                                    controller.genderType.value = val as Gender;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    CustomTextformField(
+                      labelText: "Password*",
+                      hintText: "Password",
+                      controller: controller.passwordController,
+                      validator: (value) {
+                        return controller.validpassword(value);
+                      },
+                      suffixIcon: InkWell(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.visibility_off,
+                          color: Color(0xff000075),
+                        ),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Color(0xff000075),
+                      ),
+                    ),
+                    CustomTextformField(
+                      controller: controller.confirmPasswordController,
+                      validator: (cpass) =>
+                          controller.validConfirmPassword(cpass),
+                      labelText: "Confirm Password*",
+                      hintText: "Password",
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Color(0xff000075),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                            child: CustomButton(
+                          // navigation: () => controller.checkNextButton,
+                          navigation: () {
+                            controller.checkNextButton();
+                          },
+                          text: "Next   ",
+                          textColor: Colors.white,
+                          border: Border.all(
+                            color: Color(0xff000075),
+                          ),
+                          backgroundColor: Color(0xff000075),
+                        )),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

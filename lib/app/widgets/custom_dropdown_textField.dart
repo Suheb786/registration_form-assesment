@@ -25,7 +25,6 @@ class CustomDropdownTextFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox.shrink(),
           Text(
             titleText,
             style: TextStyle(

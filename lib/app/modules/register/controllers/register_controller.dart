@@ -3,16 +3,68 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:registration_form/app/modules/yourInfo/views/your_info_view.dart';
 
 import '../../../components/enums.dart';
 
 class RegisterController extends GetxController {
   var genderType = Gender.Male.obs;
-
-  final basicFormKey = GlobalKey<FormState>();
-
   TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController phoneNoController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  final registerFormKey = GlobalKey<FormState>();
+
   File? pickedImage; // Null if image is not picked
+
+  String? validpassword(String? value) {
+    if (value!.length < 6) {
+      return "Password must contain Special, Captial, Small and Numeric Characters";
+    }
+  }
+
+  String? validFirstName(String? fname) {
+    if (fname!.length < 3) {
+      return "First Name atleast have 3 characters";
+    }
+  }
+
+  String? validConfirmPassword(String? cpass) {
+    if (confirmPasswordController.text != passwordController.text) {
+      return "Password does not match";
+    }
+  }
+
+  String? validLastName(String? lname) {
+    if (lname!.length < 3) {
+      return "Last Name atleast have 3 characters";
+    }
+  }
+
+  String? validPhoneNo(String? phone) {
+    if (phone!.length < 10) {
+      return "Enter a valid phone. no";
+    }
+  }
+
+  String? validEmail(email) {
+    if (email!.isEmpty || email == null) {
+      return "Email Field cann't be Empty";
+    } else if (!emailRex.hasMatch(email)) {
+      return "Enter a valid Email";
+    }
+    return null;
+  }
+
+  checkNextButton() {
+    print('checknextbutton');
+    if (registerFormKey.currentState!.validate()) {
+      Get.toNamed('/your-info');
+    }
+  }
 
   //* Pic image from camera   ---->>>>>>>>>>>>
   void _openCamera(BuildContext context) async {
@@ -108,4 +160,7 @@ class RegisterController extends GetxController {
       return "DayScholar";
     }
   }
+
+  RegExp emailRex = RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 }

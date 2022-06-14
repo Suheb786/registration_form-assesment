@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: 4.6.5
+  google_fonts: ^3.0.1
   image_picker: ^0.8.5+3
 
 dev_dependencies:
