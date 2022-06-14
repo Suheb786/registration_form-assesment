@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class FormController extends GetxController {
+import '../../../components/enums.dart';
+
+class RegisterController extends GetxController {
+  var genderType = Gender.Male.obs;
+
   final basicFormKey = GlobalKey<FormState>();
 
   TextEditingController firstNameController = TextEditingController();
-   File? pickedImage; // Null if image is not picked
+  File? pickedImage; // Null if image is not picked
 
-    //* Pic image from camera   ---->>>>>>>>>>>>
+  //* Pic image from camera   ---->>>>>>>>>>>>
   void _openCamera(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
@@ -24,7 +28,7 @@ class FormController extends GetxController {
     update();
   }
 
-    //* Pic image from gallery >>>>>>>>>>>>
+  //* Pic image from gallery >>>>>>>>>>>>
   void _openGallery(BuildContext context) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -95,5 +99,13 @@ class FormController extends GetxController {
             ),
           );
         });
+  }
+
+  String genderCheck() {
+    if (genderType.value == Gender.Male) {
+      return "Hostelers";
+    } else {
+      return "DayScholar";
+    }
   }
 }

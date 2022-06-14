@@ -110,8 +110,8 @@ class CustomTextformField extends StatelessWidget {
                   width: 2,
                 ),
               ),
-              errorStyle:
-                  TextStyle(fontSize: 10, color: Colors.white.withOpacity(0.75)),
+              errorStyle: TextStyle(
+                  fontSize: 10, color: Colors.white.withOpacity(0.75)),
             ),
           ),
         ],

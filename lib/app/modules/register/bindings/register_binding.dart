@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 
-import '../controllers/form_controller.dart';
+import '../controllers/register_controller.dart';
 
-class FormBinding extends Bindings {
+class RegisterBinding extends Bindings {
   @override
   void dependencies() {
     // Get.lazyPut<FormController>(
     //   () => FormController(),
     // );
-    Get.put(FormController());
+    Get.put(RegisterController());
   }
 }
