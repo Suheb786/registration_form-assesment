@@ -8,6 +8,16 @@ import 'package:registration_form/app/modules/yourInfo/views/your_info_view.dart
 import '../../../components/enums.dart';
 
 class RegisterController extends GetxController {
+  bool isObscure = true;
+  void toggleObscure() {
+    if (isObscure) {
+      isObscure = false;
+    } else {
+      isObscure = true;
+    }
+    update();
+  }
+
   var genderType = Gender.Male.obs;
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();

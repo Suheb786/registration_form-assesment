@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextformField extends StatelessWidget {
+  bool obscureText;
   final String? labelText;
   final String? hintText;
   final int? maxLines;
@@ -15,6 +16,7 @@ class CustomTextformField extends StatelessWidget {
   final int? maxLength;
 
   CustomTextformField({
+    this.obscureText = false,
     this.maxLines = 1,
     this.suffixIcon,
     this.prefixIcon,
@@ -48,6 +50,7 @@ class CustomTextformField extends StatelessWidget {
                   ),
                 ),
           TextFormField(
+            obscureText: obscureText,
             maxLines: maxLines,
             textCapitalization: textCapitalization,
             onTap: onTap,

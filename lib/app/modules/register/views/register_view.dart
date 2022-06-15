@@ -120,24 +120,35 @@ class Register extends GetView<RegisterController> {
                         ),
                       ),
                     ),
-                    CustomTextformField(
-                      labelText: "Password*",
-                      hintText: "Password",
-                      controller: controller.passwordController,
-                      validator: (value) {
-                        return controller.validpassword(value);
+                    GetBuilder<RegisterController>(
+                      init: RegisterController(),
+                      builder: (controller) {
+                        return CustomTextformField(
+                          labelText: "Password*",
+                          hintText: "Password",
+                          obscureText: controller.isObscure,
+                          controller: controller.passwordController,
+                          validator: (value) {
+                            return controller.validpassword(value);
+                          },
+                          suffixIcon: InkWell(
+                            onTap: controller.toggleObscure,
+                            child: controller.isObscure
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: Color(0xff000075),
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: Color(0xff000075),
+                                  ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Color(0xff000075),
+                          ),
+                        );
                       },
-                      suffixIcon: InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.visibility_off,
-                          color: Color(0xff000075),
-                        ),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Color(0xff000075),
-                      ),
                     ),
                     CustomTextformField(
                       controller: controller.confirmPasswordController,

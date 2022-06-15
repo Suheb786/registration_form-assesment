@@ -85,6 +85,7 @@ class YourInfoView extends GetView<YourInfoController> {
                   ),
                 ),
                 CustomTextformField(
+                  
                   controller: controller.experienceController,
                   validator: (exp) => controller.validExperience(exp),
                   keyboardType: TextInputType.number,
