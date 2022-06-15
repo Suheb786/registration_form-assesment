@@ -41,7 +41,7 @@ class YourInfoController extends GetxController {
   //* Domain Dropdown lists ------------->>>>>>
   List<String> domainList = ["Machine Learning", "Robotics", "Data Mining"];
 
-  validateDropDownFields() {
+  bool validateDropDownFields() {
     if (intialSelectedCourse.value.isEmpty ||
         intialSelectedYear.value.isEmpty ||
         intialSelectedDesignation.value.isEmpty ||
@@ -50,6 +50,11 @@ class YourInfoController extends GetxController {
         "Empty Selection Fields",
         "Selection of Educatoin, Year of Passing, Designation and Domain are required",
       );
+      print("true hua");
+      return false;
+    } else {
+      print("false hua");
+      return true;
     }
   }
 
@@ -66,7 +71,7 @@ class YourInfoController extends GetxController {
   }
 
   checkYourInfoPage() {
-    if (yourInfoFormKey.currentState!.validate() || validateDropDownFields()) {
+    if (yourInfoFormKey.currentState!.validate() && validateDropDownFields()) {
       Get.toNamed("/your-address");
     }
   }
