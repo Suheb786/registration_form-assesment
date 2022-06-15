@@ -1,7 +1,10 @@
 # registration_form
 
-A new Flutter project.
+![RegisterScreen]([url](https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/registerUI.png))
 
-https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/registerUI.png
-https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/YourInfoUI.png
-https://github.com/Suheb786/registration_form-assesment/blob/master/lib/Interface/addressUI.png?raw=true
+![InfoScreen]([url](https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/YourInfoUI.png))
+
+
+![AddressScreen]([url](https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/addressUI.png))
+
+![AddressScreen](https://raw.githubusercontent.com/Suheb786/registration_form-assesment/master/lib/Interface/addressUI.png)
