@@ -33,7 +33,8 @@ class RegisterController extends GetxController {
   }
 
   String? validConfirmPassword(String? cpass) {
-    if (confirmPasswordController.text != passwordController.text) {
+    if (confirmPasswordController.text != passwordController.text ||
+        confirmPasswordController.text.isEmpty) {
       return "Password does not match";
     }
   }

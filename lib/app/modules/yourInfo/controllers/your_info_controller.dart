@@ -1,8 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/snackbar.dart';
 
 class YourInfoController extends GetxController {
+  final yourInfoFormKey = GlobalKey<FormState>();
+  TextEditingController gradeController = TextEditingController();
+  TextEditingController experienceController = TextEditingController();
+
   var intialSelectedCourse = "".obs;
   var intialSelectedYear = "".obs;
   var intialSelectedDesignation = "".obs;
@@ -42,13 +47,30 @@ class YourInfoController extends GetxController {
         intialSelectedDesignation.value.isEmpty ||
         intialSelectedDomain.value.isEmpty) {
       showRedSnackbar(
-        "Empty Fields",
-        "Selection of Course, Branch, Semester are required",
+        "Empty Selection Fields",
+        "Selection of Educatoin, Year of Passing, Designation and Domain are required",
       );
     }
   }
 
-  final count = 0.obs;
+  String? validExperience(exp) {
+    if (exp.toString().isEmpty) {
+      return "Please Enter your no. of exprienced year.";
+    }
+  }
+
+  String? validGrade(grd) {
+    if (grd.toString().length < 2) {
+      return "Please enter your grades";
+    }
+  }
+
+  checkYourInfoPage() {
+    if (yourInfoFormKey.currentState!.validate() || validateDropDownFields()) {
+      Get.toNamed("/your-address");
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -63,6 +85,4 @@ class YourInfoController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

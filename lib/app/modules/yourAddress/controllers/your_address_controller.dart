@@ -12,7 +12,7 @@ class YourAddressController extends GetxController {
     "Delhi",
     "Others"
   ];
-  final count = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -27,6 +27,4 @@ class YourAddressController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -22,6 +22,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: navigation,
+      
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

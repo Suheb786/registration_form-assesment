@@ -4,7 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
 
-  static const FORM = _Paths.FORM;
+  static const Register = _Paths.Register;
   static const YOUR_INFO = _Paths.YOUR_INFO;
   static const YOUR_ADDRESS = _Paths.YOUR_ADDRESS;
 }
@@ -12,7 +12,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
 
-  static const FORM = '/form';
+  static const Register = '/form';
   static const YOUR_INFO = '/your-info';
   static const YOUR_ADDRESS = '/your-address';
 }
